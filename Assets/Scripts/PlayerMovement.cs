@@ -1,7 +1,7 @@
 using UnityEngine; // old input system namespace
 using UnityEngine.InputSystem; // Import the new Input System namespace
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
 
     // movement variables

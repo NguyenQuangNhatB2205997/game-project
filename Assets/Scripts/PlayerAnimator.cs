@@ -5,15 +5,14 @@ public class PlayerAnimator : MonoBehaviour
     // references
     Animator animator;
 
-    // PlayerMovement is the old script, now we use NewMonoBehaviourScript
-    NewMonoBehaviourScript playerMovement;
+    PlayerMovement playerMovement;
     SpriteRenderer spriteRenderer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
-        playerMovement = GetComponent<NewMonoBehaviourScript>();
+        playerMovement = GetComponent<PlayerMovement>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
