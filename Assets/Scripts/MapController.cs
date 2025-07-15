@@ -33,65 +33,65 @@ public class MapController : MonoBehaviour
 
         if (playerMovement.movement.x > 0 && playerMovement.movement.y == 0) // right
         {
-            if(!Physics2D.OverlapCircle(player.transform.position + new Vector3(20, 0, 0), checkerRadius, terrainMask))
+            if(!Physics2D.OverlapCircle(currentChunk.transform.Find("Right").position, checkerRadius, terrainMask))
             {
-                noTerrainPosition = player.transform.position + new Vector3(20, 0, 0);
+                noTerrainPosition = currentChunk.transform.Find("Right").position + new Vector3(20, 0, 0);
                 SpawnChunk();
             }
         }
         else if (playerMovement.movement.x < 0 && playerMovement.movement.y == 0) // left
         {
-            if(!Physics2D.OverlapCircle(player.transform.position + new Vector3(-20, 0, 0), checkerRadius, terrainMask))
+            if(!Physics2D.OverlapCircle(currentChunk.transform.Find("Left").position, checkerRadius, terrainMask))
             {
-                noTerrainPosition = player.transform.position + new Vector3(-20, 0, 0);
+                noTerrainPosition = currentChunk.transform.Find("Left").position + new Vector3(-20, 0, 0);
                 SpawnChunk();
             }
         }
         else if (playerMovement.movement.x == 0 && playerMovement.movement.y > 0) // up
         {
-            if(!Physics2D.OverlapCircle(player.transform.position + new Vector3(0, 20, 0), checkerRadius, terrainMask))
+            if(!Physics2D.OverlapCircle(currentChunk.transform.Find("Up").position, checkerRadius, terrainMask))
             {
-                noTerrainPosition = player.transform.position + new Vector3(0, 20, 0);
+                noTerrainPosition = currentChunk.transform.Find("Up").position + new Vector3(0, 20, 0);
                 SpawnChunk();
             }
         }
         else if (playerMovement.movement.x == 0 && playerMovement.movement.y < 0) // down
         {
-            if(!Physics2D.OverlapCircle(player.transform.position + new Vector3(0, -20, 0), checkerRadius, terrainMask))
+            if(!Physics2D.OverlapCircle(currentChunk.transform.Find("Down").position, checkerRadius, terrainMask))
             {
-                noTerrainPosition = player.transform.position + new Vector3(0, -20, 0);
+                noTerrainPosition = currentChunk.transform.Find("Down").position + new Vector3(0, -20, 0);
                 SpawnChunk();
             }
         }
         else if (playerMovement.movement.x > 0 && playerMovement.movement.y > 0) // right up
         {
-            if(!Physics2D.OverlapCircle(player.transform.position + new Vector3(20, 20, 0), checkerRadius, terrainMask))
+            if(!Physics2D.OverlapCircle(currentChunk.transform.Find("Right Up").position + new Vector3(20, 20, 0), checkerRadius, terrainMask))
             {
-                noTerrainPosition = player.transform.position + new Vector3(20, 20, 0);
+                noTerrainPosition = currentChunk.transform.Find("Right Up").position + new Vector3(20, 20, 0);
                 SpawnChunk();
             }
         }
         else if (playerMovement.movement.x > 0 && playerMovement.movement.y < 0) // right down
         {
-            if(!Physics2D.OverlapCircle(player.transform.position + new Vector3(20, -20, 0), checkerRadius, terrainMask))
+            if(!Physics2D.OverlapCircle(currentChunk.transform.Find("Right Down").position + new Vector3(20, -20, 0), checkerRadius, terrainMask))
             {
-                noTerrainPosition = player.transform.position + new Vector3(20, -20, 0);
+                noTerrainPosition = currentChunk.transform.Find("Right Down").position + new Vector3(20, -20, 0);
                 SpawnChunk();
             }
         }
         else if (playerMovement.movement.x < 0 && playerMovement.movement.y > 0) // left up
         {
-            if(!Physics2D.OverlapCircle(player.transform.position + new Vector3(-20, 20, 0), checkerRadius, terrainMask))
+            if(!Physics2D.OverlapCircle(currentChunk.transform.Find("Left Up").position + new Vector3(-20, 20, 0), checkerRadius, terrainMask))
             {
-                noTerrainPosition = player.transform.position + new Vector3(-20, 20, 0);
+                noTerrainPosition = currentChunk.transform.Find("Left Up").position + new Vector3(-20, 20, 0);
                 SpawnChunk();
             }
         }
         else if (playerMovement.movement.x < 0 && playerMovement.movement.y < 0) // left down
         {
-            if(!Physics2D.OverlapCircle(player.transform.position + new Vector3(-20, -20, 0), checkerRadius, terrainMask))
+            if(!Physics2D.OverlapCircle(currentChunk.transform.Find("Left Down").position + new Vector3(-20, -20, 0), checkerRadius, terrainMask))
             {
-                noTerrainPosition = player.transform.position + new Vector3(-20, -20, 0);
+                noTerrainPosition = currentChunk.transform.Find("Left Down").position + new Vector3(-20, -20, 0);
                 SpawnChunk();
             }
         }
