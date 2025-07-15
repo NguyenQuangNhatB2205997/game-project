@@ -9,6 +9,7 @@ public class MapController : MonoBehaviour
     Vector3 noTerrainPosition;
     public LayerMask terrainMask;
     PlayerMovement playerMovement;
+    public GameObject currentChunk;
 
     void Start()
     {
@@ -24,6 +25,12 @@ public class MapController : MonoBehaviour
 
     void ChunkChecker()
     {
+        // check if there is a terrain chunk
+        if (!currentChunk)
+        {
+            return;
+        }
+
         if (playerMovement.movement.x > 0 && playerMovement.movement.y == 0) // right
         {
             if(!Physics2D.OverlapCircle(player.transform.position + new Vector3(20, 0, 0), checkerRadius, terrainMask))
