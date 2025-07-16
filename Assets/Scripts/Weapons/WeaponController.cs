@@ -1,0 +1,38 @@
+using UnityEngine;
+
+// Base class for weapon controllers
+
+public class WeaponController : MonoBehaviour
+{
+
+    [Header("Weapon Stats")]
+    public GameObject weaponPrefab; // store the weapon prefab
+    public int damage; // damage dealt by the weapon
+    public float speed; // attack speed
+    public float cooldownDuration; // cooldown duration after an attack
+    float currentCooldown; // current cooldown time
+    public int pierce; // maximum amount of times the weapon can hit enemies
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    protected virtual void Start()
+    {
+        // if the player has a weapon, he can't attack right away
+        currentCooldown = cooldownDuration; 
+    }
+
+    // Update is called once per frame
+    protected virtual void Update()
+    {
+        currentCooldown -= Time.deltaTime; // decrease the cooldown time
+        if (currentCooldown <= 0)
+        {
+            Attack(); // if the cooldown is over, allow the player to attack
+        }
+    }
+
+    // Implement attack logic here
+    protected virtual void Attack()
+    {
+        currentCooldown = cooldownDuration; // reset cooldown after attack
+    }
+}
