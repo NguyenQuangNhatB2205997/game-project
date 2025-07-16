@@ -158,6 +158,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   currentChunk: {fileID: 0}
+  spawnedChunks: []
+  latestChunk: {fileID: 0}
+  maxOptimizeDistance: 50
+  optimizerCooldownTime: 1
 --- !u!4 &185839778
 Transform:
   m_ObjectHideFlags: 0

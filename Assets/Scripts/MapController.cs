@@ -11,6 +11,18 @@ public class MapController : MonoBehaviour
     PlayerMovement playerMovement;
     public GameObject currentChunk;
 
+    [Header("Optimization")]
+    public List<GameObject> spawnedChunks;
+    public GameObject latestChunk;
+    public float maxOptimizeDistance; // must be greater than the length and width of the tilemap
+    float OptimizeDistance;
+
+    // cooldown for the optimizer to run
+    // because the optimizer runs every frame and takes a lot of performance
+    float optimizerCooldown;
+    public float optimizerCooldownTime; // time in seconds before the optimizer runs again 
+    // set to 1 as 1 second cooldown 
+    
     void Start()
     {
         // playerMovement = FindObjectOfType<PlayerMovement>();
@@ -21,6 +33,7 @@ public class MapController : MonoBehaviour
     void Update()
     {
         ChunkChecker();
+        ChunkOptimizer();
     }
 
     void ChunkChecker()
@@ -100,6 +113,35 @@ public class MapController : MonoBehaviour
     void SpawnChunk()
     {
         int rand = Random.Range(0, terrainChunks.Count);
-        Instantiate(terrainChunks[rand], noTerrainPosition, Quaternion.identity);
+        latestChunk = Instantiate(terrainChunks[rand], noTerrainPosition, Quaternion.identity);
+        spawnedChunks.Add(latestChunk);
+    }
+
+    // instead of destroying chunks, we just disable them to save performance
+    void ChunkOptimizer()
+    {
+        optimizerCooldown -= Time.deltaTime;
+
+        if (optimizerCooldown <= 0f)
+        {
+            optimizerCooldown = optimizerCooldownTime;
+        }
+        else
+        {
+            return; // skip optimization if cooldown is not finished
+        }
+
+        foreach (GameObject chunk in spawnedChunks)
+        {
+            OptimizeDistance = Vector3.Distance(player.transform.position, chunk.transform.position);
+            if (OptimizeDistance > maxOptimizeDistance)
+            {
+                chunk.SetActive(false);
+            }
+            else
+            {
+                chunk.SetActive(true);
+            }
+        }
     }
 }
