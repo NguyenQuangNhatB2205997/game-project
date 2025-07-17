@@ -10,7 +10,7 @@ public class KnifeBehaviour : WeaponProjectileBehaviour
     protected override void Start()
     {
         base.Start();
-        knifeController = FindObjectOfType<KnifeController>(); // find the KnifeController in the scene
+        knifeController = FindFirstObjectByType<KnifeController>(); // find the KnifeController in the scene
     }
 
     // Update is called once per frame
