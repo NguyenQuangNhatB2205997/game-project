@@ -8,15 +8,22 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     Rigidbody2D rb;
     [HideInInspector]
+    public float lastHorizontalVector;
+    [HideInInspector]
+    public float lastVerticalVector;
+    [HideInInspector]
     public Vector2 movement;
 
-    public float lastHorizontalVector;
-    public float lastVerticalVector;
+    public Vector2 lastMovedVector;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // if no input is detected, the player will face right
+        // and no projection will be made
+        lastMovedVector = new Vector2(1, 0f); 
     }
 
     // Update is called once per frame, and it's frame rate dependent
@@ -51,23 +58,20 @@ public class PlayerMovement : MonoBehaviour
         {
             // If there is horizontal movement, update the last horizontal vector
             lastHorizontalVector = movement.x;
+            lastMovedVector = new Vector2(lastHorizontalVector, 0f); // last moved X vector
         }
-        else if (movement.y != 0)
+
+        if (movement.y != 0)
         {
             // If there is vertical movement, update the last vertical vector
             lastVerticalVector = movement.y;
+            lastMovedVector = new Vector2(0f, lastVerticalVector); // last moved Y vector
         }
-        else if (movement.x != 0 && movement.y != 0)
+
+        if (movement.x != 0 && movement.y != 0)
         {
-            // If there is both horizontal and vertical movement, update both vectors
-            lastHorizontalVector = movement.x;
-            lastVerticalVector = movement.y;
-        }
-        else
-        {
-            // If no movement, reset the last vectors
-            lastHorizontalVector = 0;
-            lastVerticalVector = 0;
+            // If both horizontal and vertical movement are present, update the last moved vector
+            lastMovedVector = new Vector2(lastHorizontalVector, lastVerticalVector);
         }
     }
 

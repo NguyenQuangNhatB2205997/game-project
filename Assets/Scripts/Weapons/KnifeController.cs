@@ -15,6 +15,6 @@ public class KnifeController : WeaponController
         // spawn knives at the player's position
         GameObject spawnKnife = Instantiate(weaponPrefab);
         spawnKnife.transform.position = transform.position; // set the knife's position to the player's position
-        spawnKnife.GetComponent<KnifeBehaviour>().DirectionChecker(playerMovement.movement); // set the knife's direction
+        spawnKnife.GetComponent<KnifeBehaviour>().DirectionChecker(playerMovement.lastMovedVector); // set the knife's direction
     }
 }
