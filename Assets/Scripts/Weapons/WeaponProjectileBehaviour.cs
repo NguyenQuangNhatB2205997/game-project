@@ -4,7 +4,7 @@ public class WeaponProjectileBehaviour : MonoBehaviour
 {
 
     protected Vector3 direction; // direction of the projectile
-    protected float destroyAfterSeconds; // time after which the projectile will be destroyed
+    public float destroyAfterSeconds; // time after which the projectile will be destroyed
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()

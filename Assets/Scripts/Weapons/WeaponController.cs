@@ -13,9 +13,13 @@ public class WeaponController : MonoBehaviour
     float currentCooldown; // current cooldown time
     public int pierce; // maximum amount of times the weapon can hit enemies
 
+    protected PlayerMovement playerMovement; // reference to the PlayerMovement script
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
+        playerMovement = FindFirstObjectByType<PlayerMovement>(); // find the PlayerMovement script in the scene
+
         // if the player has a weapon, he can't attack right away
         currentCooldown = cooldownDuration; 
     }
