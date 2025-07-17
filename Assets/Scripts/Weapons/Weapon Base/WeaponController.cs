@@ -6,12 +6,15 @@ public class WeaponController : MonoBehaviour
 {
 
     [Header("Weapon Stats")]
-    public GameObject weaponPrefab; // store the weapon prefab
-    public int damage; // damage dealt by the weapon
-    public float speed; // attack speed
-    public float cooldownDuration; // cooldown duration after an attack
+    public WeaponScriptableObject weaponData; // reference to the weapon data scriptable object
+
+    // public GameObject weaponPrefab; // store the weapon prefab
+    // public int damage; // damage dealt by the weapon
+    // public float speed; // attack speed
+    // public float cooldownDuration; // cooldown duration after an attack
+    // public int pierce; // maximum amount of times the weapon can hit enemies
+
     float currentCooldown; // current cooldown time
-    public int pierce; // maximum amount of times the weapon can hit enemies
 
     protected PlayerMovement playerMovement; // reference to the PlayerMovement script
 
@@ -21,7 +24,7 @@ public class WeaponController : MonoBehaviour
         playerMovement = FindFirstObjectByType<PlayerMovement>(); // find the PlayerMovement script in the scene
 
         // if the player has a weapon, he can't attack right away
-        currentCooldown = cooldownDuration; 
+        currentCooldown = weaponData.cooldownDuration;
     }
 
     // Update is called once per frame
@@ -37,6 +40,6 @@ public class WeaponController : MonoBehaviour
     // Implement attack logic here
     protected virtual void Attack()
     {
-        currentCooldown = cooldownDuration; // reset cooldown after attack
+        currentCooldown = weaponData.cooldownDuration; // reset cooldown after attack
     }
 }

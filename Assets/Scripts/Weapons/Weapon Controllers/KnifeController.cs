@@ -13,7 +13,7 @@ public class KnifeController : WeaponController
         base.Attack(); // Call the base class Attack method
         
         // spawn knives at the player's position
-        GameObject spawnKnife = Instantiate(weaponPrefab);
+        GameObject spawnKnife = Instantiate(weaponData.weaponPrefab);
         spawnKnife.transform.position = transform.position; // set the knife's position to the player's position
         spawnKnife.GetComponent<KnifeBehaviour>().DirectionChecker(playerMovement.lastMovedVector); // set the knife's direction
     }

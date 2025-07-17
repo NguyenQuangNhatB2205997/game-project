@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class WeaponProjectileBehaviour : MonoBehaviour
 {
+    public WeaponScriptableObject weaponData; // reference to the weapon data scriptable object
 
     protected Vector3 direction; // direction of the projectile
     public float destroyAfterSeconds; // time after which the projectile will be destroyed
