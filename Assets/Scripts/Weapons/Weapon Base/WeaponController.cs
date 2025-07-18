@@ -24,7 +24,7 @@ public class WeaponController : MonoBehaviour
         playerMovement = FindFirstObjectByType<PlayerMovement>(); // find the PlayerMovement script in the scene
 
         // if the player has a weapon, he can't attack right away
-        currentCooldown = weaponData.cooldownDuration;
+        currentCooldown = weaponData.CooldownDuration;
     }
 
     // Update is called once per frame
@@ -40,6 +40,6 @@ public class WeaponController : MonoBehaviour
     // Implement attack logic here
     protected virtual void Attack()
     {
-        currentCooldown = weaponData.cooldownDuration; // reset cooldown after attack
+        currentCooldown = weaponData.CooldownDuration; // reset cooldown after attack
     }
 }
