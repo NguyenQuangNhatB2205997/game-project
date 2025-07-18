@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-
+    public EnemyScriptableObject enemyData;
     Transform player;
-    public float moveSpeed;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,7 +15,7 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         // constantly move towards the player
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, enemyData.moveSpeed * Time.deltaTime);
     }
 
 }
