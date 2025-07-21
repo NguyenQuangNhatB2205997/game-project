@@ -7,6 +7,21 @@ public class WeaponProjectileBehaviour : MonoBehaviour
     protected Vector3 direction; // direction of the projectile
     public float destroyAfterSeconds; // time after which the projectile will be destroyed
 
+    // current stats
+    protected float currentDamage; // current damage of the projectile
+    protected float currentSpeed; // current speed of the projectile
+    protected float currentCooldownDuration; // current cooldown duration of the projectile
+    protected int currentPierce; // current pierce of the projectile
+
+    void Awake()
+    {
+        // Initialize current stats from weaponData
+        currentDamage = weaponData.Damage;
+        currentSpeed = weaponData.Speed;
+        currentCooldownDuration = weaponData.CooldownDuration;
+        currentPierce = weaponData.Pierce;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
@@ -65,4 +80,14 @@ public class WeaponProjectileBehaviour : MonoBehaviour
         transform.localScale = scale;
         transform.rotation = Quaternion.Euler(rotation); // cannot convert Vector3 to Quaternion directly, so we use Euler angles
     }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Check if the projectile collides with an enemy
+        EnemyStats enemy = collision.GetComponent<EnemyStats>();
+
+        // make sure to use currentDamage instead of weaponData.Damage in case any damage multipliers in the future
+        enemy.TakeDamage(currentDamage); 
+    }
+
 }
