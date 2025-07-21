@@ -83,11 +83,24 @@ public class WeaponProjectileBehaviour : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.CompareTag("Enemy"))
+        {
         // Check if the projectile collides with an enemy
         EnemyStats enemy = collision.GetComponent<EnemyStats>();
 
         // make sure to use currentDamage instead of weaponData.Damage in case any damage multipliers in the future
         enemy.TakeDamage(currentDamage); 
+        ReducePierce(); // reduce the pierce of the projectile
+        }
+    }
+
+    void ReducePierce()
+    {
+        currentPierce--;
+        if (currentPierce <= 0)
+        {
+            Destroy(gameObject); // destroy the projectile if it has no pierce left
+        }
     }
 
 }
