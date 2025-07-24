@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        TestSwitchState(); // for testing state switching
         switch (currentGameState)
         {
             case GameState.Gameplay:
