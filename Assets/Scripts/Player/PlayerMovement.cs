@@ -5,16 +5,17 @@ public class PlayerMovement : MonoBehaviour
 {
 
     // movement variables
-    public float moveSpeed;
-    Rigidbody2D rb;
     [HideInInspector]
     public float lastHorizontalVector;
     [HideInInspector]
     public float lastVerticalVector;
     [HideInInspector]
     public Vector2 movement;
-
+    [HideInInspector]
     public Vector2 lastMovedVector;
+
+    Rigidbody2D rb;   
+    public CharacterScriptableObject characterData; // reference to the character data scriptable object
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -78,6 +79,6 @@ public class PlayerMovement : MonoBehaviour
     // Moves the player based on the movement vector and speed
     void Move()
     {
-        rb.linearVelocity = new Vector2(movement.x * moveSpeed, movement.y * moveSpeed);
+        rb.linearVelocity = new Vector2(movement.x * characterData.MoveSpeed, movement.y * characterData.MoveSpeed);
     }
 }

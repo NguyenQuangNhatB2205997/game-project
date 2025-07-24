@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 517204996}
   - component: {fileID: 517204997}
   - component: {fileID: 517204998}
+  - component: {fileID: 517204999}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -386,11 +387,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946c900d7f869f740b039ad384c3b862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
   lastHorizontalVector: 0
   lastVerticalVector: 0
   movement: {x: 0, y: 0}
   lastMovedVector: {x: 0, y: 0}
+  characterData: {fileID: 11400000, guid: 57ef63693863b7a4ba8c8533e5e9bd20, type: 2}
 --- !u!95 &517204997
 Animator:
   serializedVersion: 7
@@ -425,6 +426,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5f6f303bf29b14f988302e0d5ab346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &517204999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517204991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2e3209986d246c4ea550a223e0b3652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterData: {fileID: 0}
+  currentHealth: 0
+  currentMoveSpeed: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5112,6 +5128,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 661700640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1574753772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1574753773}
+  m_Layer: 0
+  m_Name: Enemy Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1574753773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574753772}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1632908347
 GameObject:
   m_ObjectHideFlags: 0
@@ -5343,3 +5390,4 @@ SceneRoots:
   - {fileID: 3464481287406245664}
   - {fileID: 2100431554}
   - {fileID: 1632908349}
+  - {fileID: 1574753773}
