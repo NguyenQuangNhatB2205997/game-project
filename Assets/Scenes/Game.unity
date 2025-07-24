@@ -220,8 +220,8 @@ GameObject:
   - component: {fileID: 517204994}
   - component: {fileID: 517204993}
   - component: {fileID: 517204992}
-  - component: {fileID: 517204996}
   - component: {fileID: 517204997}
+  - component: {fileID: 517204996}
   - component: {fileID: 517204998}
   - component: {fileID: 517204999}
   m_Layer: 0
@@ -438,9 +438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e3209986d246c4ea550a223e0b3652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterData: {fileID: 0}
-  currentHealth: 0
-  currentMoveSpeed: 0
+  characterData: {fileID: 11400000, guid: 57ef63693863b7a4ba8c8533e5e9bd20, type: 2}
+  iFrameDuration: 0.5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5347,6 +5346,10 @@ PrefabInstance:
     - target: {fileID: 3853782184782748834, guid: 19ae398ed35f4ac4aa4e3e5e0bfd345c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4685025246121926560, guid: 19ae398ed35f4ac4aa4e3e5e0bfd345c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6644671428879079077, guid: 19ae398ed35f4ac4aa4e3e5e0bfd345c, type: 3}
       propertyPath: m_Name
