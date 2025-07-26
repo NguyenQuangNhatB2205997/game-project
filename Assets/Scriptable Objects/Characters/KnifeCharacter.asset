@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6755df97fa308a64a8fd8e381af8d16f, type: 3}
   m_Name: KnifeCharacter
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 10
   moveSpeed: 5

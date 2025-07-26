@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour
 {
     // public PlayerInput playerInput; // reference to the player input actions
 
+    public static GameManager instance; // singleton instance of GameManager
+
     // define game states
     public enum GameState
     {
@@ -18,19 +20,31 @@ public class GameManager : MonoBehaviour
     // store the previous game state
     public GameState previousGameState;
 
+    public bool isGameOver = false; // flag to check if the game is over
+
     [Header("UI")]
     public GameObject pauseMenu; // reference to the pause menu UI
+    public GameObject resultScreen; // reference to the game over UI
 
     void Awake()
     {
-        DisablePauseMenu(); // ensure the pause menu is disabled at start
+        if (instance == null)
+        {
+            instance = this; // set the singleton instance
+        }
+        else if (instance != this)
+        {
+            Debug.LogWarning("Multiple GameManager instances found! Destroying duplicate.");
+            Destroy(gameObject);
+        }
+
+        DisableScreens(); // ensure the pause menu is disabled at start
 
         // playerInput = new PlayerInput();
     }
 
     void Update()
     {
-        // TestSwitchState(); // for testing state switching
         switch (currentGameState)
         {
             case GameState.Gameplay:
@@ -43,6 +57,12 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.GameOver:
                 // handle game over logic
+                if (!isGameOver)
+                {
+                    isGameOver = true; // set game over flag
+                    DisplayResults(); // display results or end game UI
+                    Debug.Log("Game Over");
+                }
                 break;
             default:
                 Debug.LogError("Unknown game state: " + currentGameState);
@@ -90,33 +110,28 @@ public class GameManager : MonoBehaviour
     }
 
     // method to disable the pause menu
-    void DisablePauseMenu()
+    void DisableScreens()
     {
         pauseMenu.SetActive(false); // deactivate the pause menu UI
+        resultScreen.SetActive(false); // deactivate the game over UI
+    }
+
+    // call this method when the player is defeated
+    public void GameOver()
+    {
+        ChangeState(GameState.GameOver);
+        Debug.Log("Game Over!");
+    }
+
+    //
+    void DisplayResults()
+    {
+        resultScreen.SetActive(true); // activate the game over UI
     }
 
     //
     // testing purposes only
     //
-    void TestSwitchState()
-    {
-        // example of switching game states
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ChangeState(GameState.Paused);
-            Debug.Log("Game Paused");
-        }
-        else if (Input.GetKeyDown(KeyCode.R))
-        {
-            ChangeState(GameState.Gameplay);
-            Debug.Log("Game Resumed");
-        }
-        else if (Input.GetKeyDown(KeyCode.G))
-        {
-            ChangeState(GameState.GameOver);
-            Debug.Log("Game Over");
-        }
-    }
     void CheckForPauseAndResume()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

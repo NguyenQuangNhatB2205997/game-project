@@ -5,9 +5,7 @@ public class PlayerStats : MonoBehaviour
 
     public CharacterScriptableObject characterData; // reference to the character data scriptable object
     float currentHealth; // current health of the player
-
     float currentMoveSpeed; // current movement speed of the player
-
     // float currentAttack; // current attack of the player
     // float currentDefense; // current defense of the player
 
@@ -58,6 +56,10 @@ public class PlayerStats : MonoBehaviour
     }
     public void KillPlayer()
     {
-        Debug.Log("Player is dead.");
+        if (!GameManager.instance.isGameOver)
+        {
+            GameManager.instance.GameOver();
+            Debug.Log("Player has been defeated!");
+        }
     }
 }
