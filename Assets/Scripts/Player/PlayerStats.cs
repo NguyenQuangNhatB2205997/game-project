@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class PlayerStats : MonoBehaviour
     float iFrameTimer;
     bool isInvincible;
 
+    [Header("UI Elements")]
+    public Image healthBar; // Reference to the health bar UI element
+
     void Awake()
     {
         // Initialize player stats from the character data
@@ -22,6 +26,12 @@ public class PlayerStats : MonoBehaviour
         currentMoveSpeed = characterData.MoveSpeed;
         // currentAttack = characterData.Attack;
         // currentDefense = characterData.Defense;
+    }
+
+    void Start()
+    {
+        // Initialize health bar UI
+        UpdateHealthBar();
     }
 
     void Update()
@@ -51,9 +61,16 @@ public class PlayerStats : MonoBehaviour
             {
                 KillPlayer(); // Call KillPlayer if health drops to zero or below
             }
+            UpdateHealthBar(); // Update the health bar UI after taking damage
         }
-
     }
+
+    void UpdateHealthBar()
+    {
+        // update the health bar UI
+        healthBar.fillAmount = currentHealth / characterData.MaxHealth; // Update health bar fill amount
+    }
+
     public void KillPlayer()
     {
         if (!GameManager.instance.isGameOver)
