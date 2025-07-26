@@ -29,12 +29,12 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         // Update invincibility frame timer
-        if (iFrameDuration > 0)
+        if (iFrameTimer > 0)
         {
             iFrameTimer -= Time.deltaTime;
         }
         // if iframe timer is out, reset invincibility state
-        else if (iFrameTimer <= 0)
+        else if (isInvincible)
         {
             isInvincible = false; // Reset invincibility state when timer runs out
         }
