@@ -48,6 +48,12 @@ public class PlayerMovement : MonoBehaviour
         // movement = new Vector2(movement.x, movement.y).normalized;
         // this is old input system code
 
+        // if the game is over, do not process input
+        if (GameManager.instance.isGameOver)
+        {
+            return;
+        }
+
         movement = Vector2.zero;
         if (Keyboard.current.wKey.isPressed) movement.y += 1;
         if (Keyboard.current.sKey.isPressed) movement.y -= 1;
@@ -79,6 +85,10 @@ public class PlayerMovement : MonoBehaviour
     // Moves the player based on the movement vector and speed
     void Move()
     {
+        if (GameManager.instance.isGameOver)
+        {
+            return;
+        }
         rb.linearVelocity = new Vector2(movement.x * characterData.MoveSpeed, movement.y * characterData.MoveSpeed);
     }
 }
