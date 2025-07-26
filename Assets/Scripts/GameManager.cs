@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,14 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenu; // reference to the pause menu UI
     public GameObject resultScreen; // reference to the game over UI
 
+    [Header("Stopwatch")]
+    public float timeLimit; // time limit in seconds
+    float stopwatchTime; // time elapsed in the game
+    public Text stopwatchDisplay; // reference to the UI text for displaying stopwatch time
+
+    [Header("Result Screen Display")]
+    public Text timeSurvived; // reference to the UI text for displaying time survived
+
     void Awake()
     {
         if (instance == null)
@@ -50,6 +59,7 @@ public class GameManager : MonoBehaviour
             case GameState.Gameplay:
                 // handle gameplay logic
                 CheckForPauseAndResume(); // check for pause/resume input
+                UpdateStopwatch(); // update stopwatch time
                 break;
             case GameState.Paused:
                 // handle paused logic
@@ -120,6 +130,7 @@ public class GameManager : MonoBehaviour
     // call this method when the player is defeated
     public void GameOver()
     {
+        timeSurvived.text = stopwatchDisplay.text; // display the survived time
         ChangeState(GameState.GameOver);
         Debug.Log("Game Over!");
     }
@@ -128,6 +139,23 @@ public class GameManager : MonoBehaviour
     void DisplayResults()
     {
         resultScreen.SetActive(true); // activate the game over UI
+    }
+
+    // update the stopwatch time
+    // no need to create a separate bool variable
+    // if switch to other states, the stopwatch will stop
+    void UpdateStopwatch()
+    {
+        stopwatchTime += Time.deltaTime; // increment stopwatch time
+        UpdateStopwatchDisplay(); // update the UI display
+    }
+
+    void UpdateStopwatchDisplay()
+    {
+        // format the stopwatch time to display minutes and seconds
+        int minutes = Mathf.FloorToInt(stopwatchTime / 60);
+        int seconds = Mathf.FloorToInt(stopwatchTime % 60);
+        stopwatchDisplay.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     //
