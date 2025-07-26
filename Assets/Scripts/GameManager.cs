@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
+    // public PlayerInput playerInput; // reference to the player input actions
+
     // define game states
     public enum GameState
     {
@@ -21,18 +24,22 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         DisablePauseMenu(); // ensure the pause menu is disabled at start
+
+        // playerInput = new PlayerInput();
     }
 
     void Update()
     {
-        TestSwitchState(); // for testing state switching
+        // TestSwitchState(); // for testing state switching
         switch (currentGameState)
         {
             case GameState.Gameplay:
                 // handle gameplay logic
+                CheckForPauseAndResume(); // check for pause/resume input
                 break;
             case GameState.Paused:
                 // handle paused logic
+                CheckForPauseAndResume(); // check for pause/resume input
                 break;
             case GameState.GameOver:
                 // handle game over logic
@@ -58,7 +65,7 @@ public class GameManager : MonoBehaviour
             ChangeState(GameState.Paused); // switch to paused state
             Time.timeScale = 0f; // pause the game
             pauseMenu.SetActive(true); // activate the pause menu UI
-            Debug.Log("Game Paused");
+            // Debug.Log("Game Paused"); //testing purposes
         }
     }
 
@@ -70,7 +77,7 @@ public class GameManager : MonoBehaviour
             ChangeState(previousGameState); // switch back to previous state
             Time.timeScale = 1f; // resume the game
             pauseMenu.SetActive(false); // deactivate the pause menu UI
-            Debug.Log("Game Resumed");
+            // Debug.Log("Game Resumed"); //testing purposes
         }
     }
 
@@ -80,6 +87,12 @@ public class GameManager : MonoBehaviour
         currentGameState = GameState.GameOver;
         Time.timeScale = 0; // stop the game time
         Debug.Log("Game Over");
+    }
+
+    // method to disable the pause menu
+    void DisablePauseMenu()
+    {
+        pauseMenu.SetActive(false); // deactivate the pause menu UI
     }
 
     //
@@ -117,9 +130,5 @@ public class GameManager : MonoBehaviour
                 PauseGame();
             }
         }
-    }
-    void DisablePauseMenu()
-    {
-        pauseMenu.SetActive(false); // deactivate the pause menu UI
     }
 }
